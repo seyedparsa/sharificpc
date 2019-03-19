@@ -1,0 +1,51 @@
+[Geometry]
+intersection.cpp	Line intersection
+LineCircleIntersection.cpp	Line and circle intersection
+CirclesIntersection.cpp	Intersection of two circles
+ConvexHull3D.cpp	Convex hull 3D
+PointsInsidePolygon.txt	Number of integer points inside polygon
+halfplane.cpp	Half plane
+point-in-circle.cpp	Is this point in circle of other 3 points?
+rotating-caliper.cpp	Rotating Caliper
+Duality.tex	Duality and properties
+delaunay.cpp	Delaunay $O(n \log^2 n)$
+stupid-delaunay.cpp	Stupid Delaunay $O(n^4)$
+
+[Graph]
+edmonds.cpp	Maximum matching - Edmond's blossom
+bicon.cpp	Biconnected components
+gomory-hu.cpp	Gomory-hu
+dmst_mlogn.cpp	Directed minimum spanning tree $O(m \log n)$
+dmst_nm.cpp	Directed minimum spanning tree $O(nm)$
+dominator.cpp	Dominator tree
+flow.cpp	Flow - Dinic
+hungarian.cpp	Maximum weighted matching - Hungarian
+EarDecomposition.txt	Ear decomposition
+
+[Combinatorics]
+simplex.cpp	LP simplex
+fft.cpp	FFT
+ntt.cpp	NTT
+stirling.cpp	Stirling 1
+Stirling2.tex	Stirling 2
+chinese_remainder.cpp	Chinese remainder
+PopularLP.tex	Popular LP
+LPDuality.tex	Duality of LP
+ExtendedCatalan.tex	Extended catalan
+Polynomial.tex	Find polynomial from it's points
+NumberOfPrimes.txt	Number of primes
+Factorials.txt	Factorials
+PowersOf3.txt	Powers of 3
+C_2n,n_.txt	C(2n,n)
+MostDivisor.txt	Most divisor
+
+[String]
+manacher.cpp	Manacher
+palindromic.cpp	Palindromic tree
+z.cpp	Z function
+
+[Data structure]
+treap.cpp	Treap
+
+#[Cheatsheat]
+Combinatorics.pdf	Combinatorics

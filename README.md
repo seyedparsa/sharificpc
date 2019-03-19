@@ -1,2 +1,2 @@
 # sharificpc
-Sharif UT Kolompeh ICPC related materials
+Sharif ICPC Team Notebook
