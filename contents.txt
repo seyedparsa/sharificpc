@@ -1,0 +1,8 @@
+[String]
+suffix-automata.cpp Suffix Automata
+suffix-tree.cpp Suffix Tree
+palindromic.cpp Palindromic Tree
+
+[Data structure]
+treap.cpp Treap
+link-cut.cpp Link-cut Tree
