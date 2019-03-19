@@ -6,3 +6,36 @@ palindromic.cpp Palindromic Tree
 [Data structure]
 treap.cpp Treap
 link-cut.cpp Link-cut Tree
+dynamic-cht Dynimic convex hull
+
+
+[Graph]
+edmonds.cpp	Maximum matching - Edmond's blossom
+bicon.cpp	Biconnected components
+flow.cpp	Flow - Dinic
+hungarian.cpp	Maximum weighted matching - Hungarian
+EarDecomposition.txt	Ear decomposition
+stoer-wagner.cpp Stoer-Wagner min cut $O(n3)$
+dmst_mlogn.cpp	Directed minimum spanning tree $O(m \log n)$
+dmst_nm.cpp	Directed minimum spanning tree $O(nm)$
+dominator.cpp	Dominator tree
+
+[Combinatorics]
+simplex.cpp	LP simplex
+fft.cpp	FFT
+ntt.cpp	NTT
+gauss.cpp Gaussian Elimination
+stirling.cpp	Stirling 1
+Stirling2.tex	Stirling 2
+chinese_remainder.cpp	Chinese remainder
+PopularLP.tex	Popular LP
+LPDuality.tex	Duality of LP
+ExtendedCatalan.tex	Extended catalan
+Polynomial.tex	Find polynomial from it's points
+
+[Constants]
+NumberOfPrimes.txt	Number of primes
+Factorials.txt	Factorials
+PowersOf3.txt	Powers of 3
+C_2n,n_.txt	C(2n,n)
+MostDivisor.txt	Most divisor
