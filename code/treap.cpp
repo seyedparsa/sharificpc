@@ -5,7 +5,6 @@ struct item {
     item (int key, int prior) : key(key), prior(prior), l(NULL), r(NULL) { }
 };
 typedef item * pitem;
-
 void split (pitem t, int key, pitem & l, pitem & r) {
     if (!t)
         l = r = NULL;
@@ -14,7 +13,6 @@ void split (pitem t, int key, pitem & l, pitem & r) {
     else
         split (t->r, key, t->r, r),  l = t;
 }
-
 void insert (pitem & t, pitem it) {
     if (!t)
         t = it;
@@ -23,7 +21,6 @@ void insert (pitem & t, pitem it) {
     else
         insert (it->key < t->key ? t->l : t->r, it);
 }
-
 void merge (pitem & t, pitem l, pitem r) {
     if (!l || !r)
         t = l ? l : r;
@@ -32,14 +29,12 @@ void merge (pitem & t, pitem l, pitem r) {
     else
         merge (r->l, l, r->l),  t = r;
 }
-
 void erase (pitem & t, int key) {
     if (t->key == key)
         merge (t, t->l, t->r);
     else
         erase (key < t->key ? t->l : t->r, key);
 }
-
 pitem unite (pitem l, pitem r) {
     if (!l || !r)  return l ? l : r;
     if (l->prior < r->prior)  swap (l, r);
