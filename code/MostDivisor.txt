@@ -1,0 +1,17 @@
+<= 1e2: 60 with 12 divisors
+<= 1e3: 840 with 32 divisors
+<= 1e4: 7560 with 64 divisors
+<= 1e5: 83160 with 128 divisors
+<= 1e6: 720720 with 240 divisors
+<= 1e7: 8648640 with 448 divisors
+<= 1e8: 73513440 with 768 divisors
+<= 1e9: 735134400 with 1344 divisors
+<= 1e10: 6983776800 with 2304 divisors
+<= 1e11: 97772875200 with 4032 divisors
+<= 1e12: 963761198400 with 6720 divisors
+<= 1e13: 9316358251200 with 10752 divisors
+<= 1e14: 97821761637600 with 17280 divisors
+<= 1e15: 866421317361600 with 26880 divisors
+<= 1e16: 8086598962041600 with 41472 divisors
+<= 1e17: 74801040398884800 with 64512 divisors
+<= 1e18: 897612484786617600 with 103680 divisors
