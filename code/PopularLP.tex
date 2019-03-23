@@ -1,0 +1,18 @@
+{\Large BellmanFord:}\\
+maximize $X_n$\\
+$X_1 = 0$\\
+and for eache edge ($v->u$ and weight w):\\
+$X_u - X_v \le w$\\
+\\
+{\Large Flow:}\\
+maximize $\Sigma f_{out}$ (where $out$ is output edges of vertex 1)\\
+for each vertex (except 1 and n):\\
+$\Sigma f_{in} - \Sigma f_{out} = 0$ (where $in$ is input edges of v and $out$ is output edges of v)\\  
+\\
+{\Large Dijkstra(IP):}\\
+minimize $\Sigma z_i * w_i$\\
+for eache edge ($v->u$ and weight w):\\
+$0 \le z_i \le 1$\\
+and for each ST-cut which vertex 1 is in S and vertex n is in T:\\
+$\Sigma z_e \geq 1$ (for each edge e from S to T)\\
+\\
