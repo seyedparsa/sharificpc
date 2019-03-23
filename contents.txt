@@ -1,3 +1,6 @@
+[Geometry]
+rotating_calipers.cpp	Rotating Calipers
+
 [String]
 suffix-automata.cpp Suffix Automata
 suffix-tree.cpp Suffix Tree
