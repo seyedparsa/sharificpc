@@ -1,9 +1,8 @@
 struct Delaunay{
 	vector <pt> p;
-	vector <pt> to;
-	vector <int> nxt;
+	vector <int> to, nxt, perm;
 
-	int add_edge(pt q, int bef=-1){
+	int add_edge(int q, int bef=-1){
 		int cnt = sz(to);
 		to.pb(q);
 		nxt.pb(-1);
@@ -27,12 +26,18 @@ struct Delaunay{
 	void easy_triangulate(){
 		to.clear();
 		nxt.clear();
+		perm = vector<int>(sz(p));
+		for (int i = 0; i < sz(p); i++)
+			perm[i] = i;
+		sort(perm.begin(), perm.end(), [&] (int i, int j){ return p[i] < p[j]; });
 		sort(p.begin(), p.end());
-		if (dir(p[0], p[1], p[2]) > 0)
+		if (dir(p[0], p[1], p[2]) > 0){
 			swap(p[1], p[2]);
-		int to0 = add_edge(p[0]), to0c = add_edge(p[2]),
-			to1 = add_edge(p[1]), to1c = add_edge(p[0]),
-			to2 = add_edge(p[2]), to2c = add_edge(p[1]);
+			swap(perm[1], perm[2]);
+		}
+		int to0 = add_edge(0), to0c = add_edge(2),
+			to1 = add_edge(1), to1c = add_edge(0),
+			to2 = add_edge(2), to2c = add_edge(1);
 
 		nxt[to1] = to2; nxt[to2] = to0;
 		nxt[to0] = to1; nxt[to0c] = to2c;
@@ -41,18 +46,18 @@ struct Delaunay{
 		int e = to0;
 		for (int i = 3; i < sz(p); i++){
 			pt q = p[i];
-			while (dir(q, to[e^1], to[e]) < 0 || dir(q, to[e^1], to[before(e)^1]) < 0)
+			while (dir(q, p[to[e^1]], p[to[e]]) < 0 || dir(q, p[to[e^1]], p[to[before(e)^1]]) < 0)
 				e = nxt[e];
 			vector <int> vis;
-			while (dir(q, to[e^1], to[e]) > 0 || dir(q, to[e^1], to[before(e)^1]) > 0){
+			while (dir(q, p[to[e^1]], p[to[e]]) > 0 || dir(q, p[to[e^1]], p[to[before(e)^1]]) > 0){
 				vis.pb(e);
 				e = nxt[e];
 			}
-			int ex = add_edge(q, before(vis[0]));
+			int ex = add_edge(i, before(vis[0]));
 			int last = ex^1;
 			for (int edge : vis){
 				nxt[last] = edge;
-				int eq = add_edge(q, edge);
+				int eq = add_edge(i, edge);
 				nxt[edge] = eq;
 				nxt[eq] = last;
 				last = eq^1;
@@ -71,7 +76,7 @@ struct Delaunay{
 
 
 	bool locally(int e){
-		pt a = to[e^1], b = to[e], c = to[nxt[e]], d = to[nxt[e^1]];
+		pt a = p[to[e^1]], b = p[to[e]], c = p[to[nxt[e]]], d = p[to[nxt[e^1]]];
 		if (dir(a, b, c) < 0) return true;
 		if (dir(b, a, d) < 0) return true;
 		if (incircle(a, b, c, d)) return false;
@@ -86,8 +91,10 @@ struct Delaunay{
 		nxt[b] = c;
 		to[e] = to[c];
 		nxt[a] = e;
+		nxt[e] = d;
 		to[e^1] = to[a];
 		nxt[c] = e^1;
+		nxt[e^1] = b;
 	}
 
 	void delaunay_triangulate(){
@@ -107,8 +114,8 @@ struct Delaunay{
 			bad.pop_back();
 			mark[e/2] = false;
 			if (!locally(e)){
-				flip(e);
 				int to_check[4] = {nxt[e], nxt[nxt[e]], nxt[e^1], nxt[nxt[e^1]]};
+				flip(e);
 				for (int i = 0; i < 4; i++)
 					if (!mark[to_check[i]/2] && !locally(to_check[i])){
 						bad.pb(to_check[i]);
@@ -116,16 +123,22 @@ struct Delaunay{
 					}
 			}
 		}
+		for (int e = 0; e < sz(to); e++){
+			if (!mark[e/2] && !locally(e)){
+				bad.pb(e);
+				mark[e/2] = true;
+			}
+		}
 	}
 
 	vector <tri> get_triangles(){
 		vector <tri> res;
 		for (int e = 0; e < sz(to); e++){
-			pt a = to[e^1], b = to[e], c = to[nxt[e]];
+			pt a = p[to[e^1]], b = p[to[e]], c = p[to[nxt[e]]];
 			if (dir(a, b, c) < 0) continue;
-			res.pb(tri(a, b, c));
+			res.pb(tri(perm[to[e^1]], perm[to[e]], perm[to[nxt[e]]]));
 		}		
 		return res;
 	}
-	Delaunay(vector <pt> p):p(p){}
+	Delaunay(vector <pt> &p):p(p){}
 };
