@@ -1,6 +1,7 @@
 [Geometry]
 rotating_calipers.cpp	Rotating Calipers
 delaunay.cpp	Delaunay Triangulation O(n2)
+ConvexHull3D.cpp    Convex Hull 3D
 
 [String]
 suffix-automata.cpp		Suffix Automata
