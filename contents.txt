@@ -26,10 +26,11 @@ dominator.cpp	Dominator tree
 simplex.cpp	LP simplex
 fft.cpp	FFT
 ntt.cpp	NTT
+BaseVectorsZ2.cpp	Base Vectors in Z2
 [!]gauss.cpp	Gaussian Elimination
 stirling.cpp	Stirling 1
 Stirling2.tex	Stirling 2
-[!]chinese_remainder.cpp	Chinese remainder
+chinese_remainder.cpp	Chinese remainder
 PopularLP.tex	Popular LP
 LPDuality.tex	Duality of LP
 ExtendedCatalan.tex	Extended catalan
