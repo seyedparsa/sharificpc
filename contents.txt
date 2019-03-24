@@ -1,6 +1,8 @@
 [Geometry]
 rotating_calipers.cpp	Rotating Calipers
 delaunay.cpp	Delaunay Triangulation O(n2)
+ConvexHull3D.cpp    Convex Hull 3D
+halfplane.cpp   Half Plane Intersection
 
 [String]
 suffix-automata.cpp		Suffix Automata
@@ -9,6 +11,7 @@ palindromic-tree.cpp		Palindromic Tree
 
 [Data structure]
 treap.cpp	Treap
+treap-full.cpp  Treap Full
 link-cut.cpp	Link-cut Tree
 DCHT3.cpp	Dynimic convex hull
 
