@@ -1,4 +1,4 @@
-// Find a number X such that X%a[i]==r[i] for all (0<=i<n) (-1 if it's not exist) O(nlogn)
+kei// Find a number X such that X%a[i]==r[i] for all (0<=i<n) (-1 if it's not exist) O(nlogn)
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -13,7 +13,7 @@ long long gcd(long long x,long long y,long long &c1,long long &c2) {
     return x;
   }
   int r=x%y;
-  long long ans=gcd(y,r,c2,c1);    
+  long long ans=gcd(y,r,c2,c1);
   c2-=c1*(x/y);
   return ans;
 }
