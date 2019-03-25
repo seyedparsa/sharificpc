@@ -1,26 +1,7 @@
-/*
-  GETS:
-  n->number of vertices
-  you should use add_edge(u,v) and
-  add pair of vertices as edges (vertices are 0..n-1)
-
-  GIVES:
-  output of edmonds() is the maximum matching in general graph
-  match[i] is matched pair of i (-1 if there isn't a matched pair)
-
-  O(nh)
-*/
-
-#include<bits/stdc++.h>
-using namespace std;
-typedef pair<int,int> pii;
-
 struct point{
   int X,Y,Z;
   point(int x=0,int y=0,int z=0){
-    X=x;
-    Y=y;
-    Z=z;
+    X=x; Y=y; Z=z;
   }
   bool operator==(const point& rhs) const {
     return (rhs.X==this->X && rhs.Y==this->Y && rhs.Z==this->Z);
@@ -36,13 +17,10 @@ point P[maxn];
 vector<point>ans;
 queue<pii>Q;
 set<pii>mark;
-
 int cross2d(point p,point q){ return p.X*q.Y-p.Y*q.X;}
 point operator -(point p,point q){ return point(p.X-q.X,p.Y-q.Y,p.Z-q.Z); }
-int dot(point v,point u){ return u.X*v.X+u.Y*v.Y+u.Z*v.Z; }
 point _cross(point u,point v){ return point(u.Y*v.Z-u.Z*v.Y,u.Z*v.X-u.X*v.Z,u.X*v.Y-u.Y*v.X); }
 point cross(point o,point p,point q){ return _cross(p-o,q-o);}
-
 point shift(point p) { return point(p.Y,p.Z,p.X);}
 point norm(point p)
 {

@@ -1,5 +1,4 @@
-point intersection(point a, point b, point c, point d)
-{
+point intersection(point a, point b, point c, point d){
 	point ab = b - a;
 	point cd = d - c;
 	point ac = c - a;

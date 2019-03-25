@@ -1,47 +1,16 @@
-#include <iostream>
-#include <cmath>
-#include <set>
-#include <algorithm>
-#include <vector>
-
-using namespace std;
-
 const int MAXN = 100 * 1000 + 10;
 const int MAXLG = 20;
 const int INF = 100 * 1000 * 1000 + 10;
-
 const int MAXPOINTS = MAXN * MAXLG;
-
 typedef pair<int ,int> point;
-
-point operator - (point a, point b)
-{
-	return point(a.first - b.first, a.second - b.second);
-}
-
-struct tria
-{
+struct tria{
 	int a, b, c;
-	tria(int _a, int _b, int _c)
-	{
-		a = _a;
-		b = _b;
-		c = _c;
+	tria(int _a, int _b, int _c){
+		a = _a; b = _b; c = _c;
 	}
-	tria()
-	{
-		a = b = c = 0;
-	}
+	tria(){a = b = c = 0;}
 };
-long long cross(point a, point b)
-{
-	return ((long long)a.first * b.second - (long long)a.second * b.first);
-}
 
-long long dot(point a, point b)
-{
-	return ((long long)a.first * b.first + (long long)a.second * b.second);
-}
 __int128 inCircle (point a, point b, point c, point d)
 {
 	if (cross(b - a, c - a) < 0)
@@ -64,12 +33,7 @@ __int128 inCircle (point a, point b, point c, point d)
 
 }
 
-
-
-
-struct Delaunay 
-{
-
+struct Delaunay {
 	typedef pair<point, int> ppi;
 	typedef pair<int, int> pii;
 	typedef pair<pii, int> pip;
@@ -83,24 +47,20 @@ struct Delaunay
 	vector<tria> res;
 	int n;
 
-	inline void add_edge(int a, int b, int c)
-	{
+	inline void add_edge(int a, int b, int c){
 		edges.insert(pip(pii(min(a, b), max(a, b)), c));
 	}
 
-	inline void remove_edge(int a, int b, int c)
-	{
+	inline void remove_edge(int a, int b, int c){
 		edges.erase(pip(pii(min(a, b), max(a, b)), c));
 	}
 
 
-	int add_triangle(int a, int b, int c)
-	{
+	int add_triangle(int a, int b, int c){
 		if (cross(points[b].first - points[a].first, points[c].first - points[a].first) == 0)
 			return -1;
 		if (cross(points[b].first - points[a].first, points[c].first - points[a].first) < 0)
 			swap(b, c);
-
 		add_edge(a, b, cnt);
 		add_edge(b, c, cnt);
 		add_edge(c, a, cnt);
@@ -108,21 +68,18 @@ struct Delaunay
 		childs[cnt][0] = childs[cnt][1] = childs[cnt][2] = -1;
 		mrk[cnt] = false;
 		last[cnt] = -1;
-
 		cnt++;
 		return cnt - 1;
 	}
 
-	inline void remove_triangle(int v)
-	{
+	inline void remove_triangle(int v){
 		childs[v][0] = childs[v][1] = childs[v][2] = -1;
 		remove_edge(t[v].a, t[v].b, v);
 		remove_edge(t[v].b, t[v].c, v);
 		remove_edge(t[v].c, t[v].a, v);
 	}
 
-	inline void relax_edge(const int &a, const int &b)
-	{
+	inline void relax_edge(const int &a, const int &b){
 		pii key(min(a, b), max(a, b));
 		set<pip>::iterator it = edges.lower_bound(pip(key, -1));
 		if (it == edges.end() || it->first != key)
@@ -150,26 +107,22 @@ struct Delaunay
 		}
 	}
 
-	inline void relax(int v)
-	{
+	inline void relax(int v){
 		relax_edge(t[v].a, t[v].b);
 		relax_edge(t[v].b, t[v].c);
 		relax_edge(t[v].c, t[v].a);
 	}
 
 
-	inline bool inLine(int a, int b, int c)
-	{
+	inline bool inLine(int a, int b, int c){
 		return cross(points[b].first - points[a].first, points[c].first - points[a].first) >= 0;
 	}
 
-	inline bool inTriangle(int a, int b, int c, int d)
-	{
+	inline bool inTriangle(int a, int b, int c, int d){
 		return inLine(a, b, d) && inLine(b, c, d) && inLine(c, a, d);
 	}
 
-	void find(int v, int p, int cl)
-	{
+	void find(int v, int p, int cl){
 		if (last[v] == cl)
 			return;
 		bool reached = false;
@@ -194,8 +147,7 @@ struct Delaunay
 		relax(childs[v][2]);
 
 	}
-	void getRes(int v, int cl)
-	{
+	void getRes(int v, int cl){
 		if (last[v] == cl)
 			return;
 		last[v] = cl;
@@ -212,8 +164,7 @@ struct Delaunay
 			res.push_back(t[v]);
 	}
 
-	vector<tria> delaunay(vector<point> v)
-	{
+    vector<tria> delaunay(vector<point> v){
 		cnt = 0;
 		int cl = 0;
 		points.clear();
@@ -247,46 +198,37 @@ struct Delaunay
 typedef pair<long double, long double> pointD;
 
 
-long double crossD(pointD a, pointD b)
-{
+long double crossD(pointD a, pointD b){
 	return a.first * b.second - a.second * b.first;
 }
 
-pointD operator + (pointD a, pointD b)
-{
+pointD operator + (pointD a, pointD b){
 	return pointD(a.first + b.first, a.second + b.second);
 }
-pointD operator - (pointD a, pointD b)
-{
+pointD operator - (pointD a, pointD b){
 	return pointD(a.first - b.first, a.second - b.second);
 }
-pointD operator * (pointD a, long double b)
-{
+pointD operator * (pointD a, long double b){
 	return pointD(a.first * b, a.second * b);
 }
-pointD operator / (pointD a, long double b)
-{
+pointD operator / (pointD a, long double b){
 	return pointD(a.first / b, a.second / b);
 }
 
-pointD intersect(pointD a, pointD b, pointD c, pointD d)
-{
+pointD intersect(pointD a, pointD b, pointD c, pointD d){
 	long double alpha = crossD(c - a, d - c) / crossD(b - a, d - c);
 	return a + (b - a) * alpha;
 }
 
-pointD norm(pointD a)
-{
+pointD norm(pointD a){
 	return pointD(-a.second, a.first);
 }
 
-long double dot(pointD a, pointD b)
-{
+long double dot(pointD a, pointD b){
 	return a.first * b.first + a.second * b.second;
 }
 
-long double getRadius(pointD a, pointD b, pointD c)
-{
+long double getRadius(pointD a, pointD b, pointD c){
 	pointD v1 = norm(b - a) + ((a + b) / 2);
 	pointD v2 = norm(c - b) + ((b + c) / 2);
 	pointD center =  intersect((a + b) / 2, v1, (b + c) / 2, v2);
@@ -295,9 +237,8 @@ long double getRadius(pointD a, pointD b, pointD c)
 }
 
 Delaunay d;
-int main()
-{
-	srand(2018);
+int main(){
+	srand(2019);
 	ios::sync_with_stdio(false);
 	cin.tie(0);
 	int n;

@@ -1,14 +1,6 @@
-#include <iostream>
-#include <algorithm>
-
-using namespace std;
-
-typedef pair<int, int> point;
-
-// returns positive if d is outside circle abc, 
+// returns positive if d is outside circle abc,
 // positive if d is inside it and 0 if it's on border
-int inCircle (point a, point b, point c, point d)
-{
+int inCircle (point a, point b, point c, point d){
 	if (cross(b - a, c - a) < 0)
 		swap(b, c);
 	int x[4][4] = {

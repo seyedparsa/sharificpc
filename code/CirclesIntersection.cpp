@@ -1,33 +1,7 @@
-#include <iomanip>
-#include <iostream>
 #define _USE_MATH_DEFINES
-#include <cmath>
-#include <vector>
-using namespace std;
-typedef long long ll;
-typedef long double ld;
-
 const int MAX_N = 2e5+10;
 const int INF = 1e9;
 const ld eps = 1e-8;
-
-bool is_zero(ld x) {
-  if(abs(x) <= eps)
-    return true;
-  return false;
-}
-
-struct point {
-public:
-  ld x, y;
-  point() {
-  }
-  point(ld xx, ld yy) {
-    x = xx;
-    y = yy;
-  }
-};
-
 
 struct circle {
 public:
