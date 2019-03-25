@@ -18,7 +18,7 @@ DCHT3.cpp	Dynimic convex hull
 [Graph]
 edmonds.cpp	Maximum matching - Edmond's blossom
 bicon.cpp	Biconnected components
-#flow.cpp	Flow - Dinic
+Dinic.cpp	Flow - Dinic
 hungarian.cpp	Maximum weighted matching - Hungarian
 EarDecomposition.txt	Ear decomposition
 stoer-wagner.cpp	Stoer-Wagner min cut $O(n^3)$
