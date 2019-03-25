@@ -3,6 +3,7 @@ rotating_calipers.cpp	Rotating Calipers
 delaunay.cpp	Delaunay Triangulation O(n^2)
 ConvexHull3D.cpp	Convex Hull 3D
 halfplane.cpp	Half Plane Intersection
+useful-geo.txt Useful Geo Facts
 
 [String]
 suffix-automata.cpp		Suffix Automata
