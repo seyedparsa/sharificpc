@@ -1,5 +1,5 @@
-const int MAXN = 2002; //XXX
-const int MAXE = 2100012; //XXX
+const int MAXN = ???; //XXX
+const int MAXE = ????????; //XXX
 
 int from[MAXE], to[MAXE], cap[MAXE], prv[MAXE], head[MAXN], pt[MAXN], ec;
 

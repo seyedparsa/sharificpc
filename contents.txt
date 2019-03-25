@@ -1,8 +1,8 @@
 [Geometry]
 rotating_calipers.cpp	Rotating Calipers
-delaunay.cpp	Delaunay Triangulation O(n2)
-ConvexHull3D.cpp    Convex Hull 3D
-halfplane.cpp   Half Plane Intersection
+delaunay.cpp	Delaunay Triangulation O(n^2)
+ConvexHull3D.cpp	Convex Hull 3D
+halfplane.cpp	Half Plane Intersection
 
 [String]
 suffix-automata.cpp		Suffix Automata
@@ -11,17 +11,17 @@ palindromic-tree.cpp		Palindromic Tree
 
 [Data structure]
 treap.cpp	Treap
-treap-full.cpp  Treap Full
+treap-full.cpp	Treap Full
 link-cut.cpp	Link-cut Tree
 DCHT3.cpp	Dynimic convex hull
 
 [Graph]
 edmonds.cpp	Maximum matching - Edmond's blossom
 bicon.cpp	Biconnected components
-#flow.cpp	Flow - Dinic
+Dinic.cpp	Flow - Dinic
 hungarian.cpp	Maximum weighted matching - Hungarian
 EarDecomposition.txt	Ear decomposition
-stoer-wagner.cpp	Stoer-Wagner min cut $O(n3)$
+stoer-wagner.cpp	Stoer-Wagner min cut $O(n^3)$
 dmst_mlogn.cpp	Directed minimum spanning tree $O(m \log n)$
 dmst_nm.cpp	Directed minimum spanning tree $O(nm)$
 dominator.cpp	Dominator tree
@@ -31,14 +31,15 @@ simplex.cpp	LP simplex
 fft.cpp	FFT
 ntt.cpp	NTT
 BaseVectorsZ2.cpp	Base Vectors in Z2
-[!]gauss.cpp	Gaussian Elimination
+gauss.cpp	Gaussian Elimination
 stirling.cpp	Stirling 1
-Stirling2.tex	Stirling 2
 chinese_remainder.cpp	Chinese remainder
+Stirling2.tex	Stirling 2
 PopularLP.tex	Popular LP
 LPDuality.tex	Duality of LP
 ExtendedCatalan.tex	Extended catalan
 Polynomial.tex	Find polynomial from it's points
+comb.pdf	Combinatorics Cheat Sheet
 
 [Constants]
 NumberOfPrimes.txt	Number of primes
