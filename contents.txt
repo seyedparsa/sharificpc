@@ -33,12 +33,13 @@ ntt.cpp	NTT
 BaseVectorsZ2.cpp	Base Vectors in Z2
 gauss.cpp	Gaussian Elimination
 stirling.cpp	Stirling 1
-Stirling2.tex	Stirling 2
 chinese_remainder.cpp	Chinese remainder
+Stirling2.tex	Stirling 2
 PopularLP.tex	Popular LP
 LPDuality.tex	Duality of LP
 ExtendedCatalan.tex	Extended catalan
 Polynomial.tex	Find polynomial from it's points
+comb.pdf	Combinatorics Cheat Sheet
 
 [Constants]
 NumberOfPrimes.txt	Number of primes

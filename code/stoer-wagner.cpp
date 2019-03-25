@@ -4,7 +4,7 @@ const int N = -1, MAXW = -1;
 int g[N][N], v[N], w[N], na[N];
 bool a[N];
 
-int minCut( int n )
+int minCut( int n ) // initialize g[][] before calling!
 {
     for( int i = 0; i < n; i++ ) v[i] = i;
 
@@ -47,7 +47,7 @@ int minCut( int n )
             }
             prev = v[zj];
 
-            // update the weights of its neighbours
+            // update the weights of its neighbors
             for( int j = 1; j < n; j++ ) if( !a[v[j]] )
                 w[j] += g[v[zj]][v[j]];
         }
