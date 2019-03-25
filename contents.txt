@@ -5,12 +5,12 @@ LineCircleIntersection.cpp	Line and circle intersection
 CirclesIntersection.cpp	Intersection of two circles
 rotating_calipers.cpp	Rotating Calipers
 delaunay.cpp	Delaunay Triangulation $O(n^2)$
+delaunay_pro.cpp	Delaunay $O(n \log^2 n)$
 ConvexHull3D.cpp	Convex Hull 3D
 halfplane.cpp	Half Plane Intersection
 mec.cpp	Minimum Enclosing Circle
 PointsInsidePolygon.txt	Number of integer points inside polygon
 #point-in-circle.cpp	Is this point in circle of other 3 points?
-#delaunay_pro.cpp	Delaunay $O(n \log^2 n)$
 useful-geo.txt	Useful Geo Facts
 Duality.tex	Duality and properties
 
