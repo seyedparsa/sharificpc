@@ -39,6 +39,7 @@ dominator.cpp	Dominator tree
 
 [Combinatorics]
 simplex.cpp	LP simplex
+matrix_game.cpp	LP for game theory
 fft.cpp	FFT
 ntt.cpp	NTT
 BaseVectorsZ2.cpp	Base Vectors in Z2
