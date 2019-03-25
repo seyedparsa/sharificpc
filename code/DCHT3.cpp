@@ -1,9 +1,7 @@
 const ld is_query = -(1LL << 62);
- 
 struct Line {
     ld m, b;
     mutable std::function<const Line *()> succ;
- 
     bool operator<(const Line &rhs) const {
         if (rhs.b != is_query) return m < rhs.m;
         const Line *s = succ();
@@ -12,7 +10,6 @@ struct Line {
         return b - s->b < (s->m - m) * x;
     }
 };
- 
 struct HullDynamic : public multiset<Line> { // dynamic upper hull + max value query
     bool bad(iterator y) {
         auto z = next(y);
@@ -24,7 +21,6 @@ struct HullDynamic : public multiset<Line> { // dynamic upper hull + max value q
         if (z == end()) return y->m == x->m && y->b <= x->b;
         return (x->b - y->b) * (z->m - y->m) >= (y->b - z->b) * (y->m - x->m);
     }
- 
     void insert_line(ld m, ld b) {
         auto y = insert({m, b});
         y->succ = [=] { return next(y) == end() ? 0 : &*next(y); };
@@ -35,7 +31,6 @@ struct HullDynamic : public multiset<Line> { // dynamic upper hull + max value q
         while (next(y) != end() && bad(next(y))) erase(next(y));
         while (y != begin() && bad(prev(y))) erase(prev(y));
     }
- 
     ld best(ld x) {
         auto l = *lower_bound((Line) {x, is_query});
         return l.m * x + l.b;

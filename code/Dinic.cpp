@@ -1,13 +1,8 @@
-const int MAXN = ???; //XXX
-const int MAXE = ????????; //XXX
-
 int from[MAXE], to[MAXE], cap[MAXE], prv[MAXE], head[MAXN], pt[MAXN], ec;
-
 void addEdge(int u, int v, int uv, int vu = 0){
 	from[ec] = u, to[ec] = v, cap[ec] = uv, prv[ec] = head[u], head[u] = ec++;
 	from[ec] = v, to[ec] = u, cap[ec] = vu, prv[ec] = head[v], head[v] = ec++;
 }
-
 int lv[MAXN], q[MAXN];
 bool bfs(int source, int sink){
 	memset(lv, 63, sizeof(lv));
@@ -24,7 +19,6 @@ bool bfs(int source, int sink){
 	}
 	return lv[sink] < 1e8;
 }
-
 int dfs(int v, int sink, int f = 1e9){
 	if (v == sink || f == 0)
 		return f;
@@ -41,7 +35,6 @@ int dfs(int v, int sink, int f = 1e9){
 		}
 	return ret;
 }
-
 int dinic(int source, int sink){
 	int ret = 0;
 	while (bfs(source, sink)){

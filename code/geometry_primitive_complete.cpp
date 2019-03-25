@@ -1,4 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef long double ld;
+typedef ld cord;
+typedef complex<ld> PT;
+#define X real()
+#define Y imag()
+#define F first
+#define S second
+#define pb push_back
+#define sz(x) ((int)(x).size())
+
+const ld EPS = 1e-12;
+
 const int ON = 0, LEFT = 1, RIGHT = -1, BACK = -2, FRONT = 2, IN = 3, OUT = -3;
+
+inline bool Geq(ld a, ld b){ return a - b > -EPS; }
+inline bool Grt(ld a, ld b){ return a - b > EPS; }
+inline bool Leq(ld a, ld b){ return a - b < EPS; }
+inline bool Lss(ld a, ld b){ return a - b < -EPS; }
+inline bool Equ(ld a, ld b){ return abs(a-b) < EPS; }
+
+struct pt{
+	cord x, y;
+	pt(cord x, cord y): x(x), y(y) {}
+	pt(){}
+	pt operator + (pt r){
+		return pt(x+r.x, y+r.y);
+	}
+	pt operator - (pt r){
+		return pt(x-r.x, y-r.y);
+	}
+	pt operator * (cord c) const{
+		return pt(x*c, y*c);
+	}
+	pt operator / (cord c) const{
+		return pt(x/c, y/c);
+	}
+	bool operator < (const pt r) const{
+		return (x < r.x || x == r.x && y < r.y);
+	}
+	cord operator ^ (pt r){
+		return x*r.y - y*r.x;
+	}
+	cord operator * (pt r){
+		return x*r.x + y*r.y;
+	}
+};
+
 bool byX(const pt &a, const pt &b){
 	if (Equ(a.x, b.x)) return Lss(a.y, b.y);
 	return Lss(a.x, b.x);
@@ -9,18 +59,29 @@ bool byY(const pt &a, const pt &b){
 }
 struct cmpXY{ bool operator ()(const pt &a, const pt &b){ return byX(a, b); } };
 struct cmpYX{ bool operator ()(const pt &a, const pt &b){ return byY(a, b); } };
+
 istream& operator >> (istream &in, pt &p){ in >> p.x >> p.y; return in; }
 ostream& operator << (ostream &out, pt p){ out << p.x << ' ' << p.y; return out; }
+pt operator * (cord c, pt p){ return p*c; }
+cord norm(pt a){ return a*a; }
+ld abs(pt a){ return sqrt(norm(a)); }
+pt unit(pt a){ return a/abs(a); } 
 pt rot(pt a){ return pt(-a.y, a.x); }
+ld dis(pt a, pt b){ return abs(a-b); }
+int sgn(ld x){ return (x < -EPS ? -1 : x > EPS ? 1 : 0); }
+int dir(pt a, pt b, pt c){ return sgn((b-a)^(c-a)); }
+
 pt proj(pt a, pt b, pt c){
 	b = b-a, c = c-a;
 	return a + (b*c)/(b*b)*b;
 }
+
 pt reflect(pt a, pt b, pt c){
 	pt d = c;
 	b = b-a, c = c-a;
 	return d + (c^b)/abs(b)*rot(unit(b))*2;
 }
+
 bool intersect(pt a, pt b, pt c, pt d){
 	int as = dir(c, d, a), bs = dir(c, d, b),
 		cs = dir(a, b, c), ds = dir(a, b, d);
@@ -40,10 +101,12 @@ bool intersect(pt a, pt b, pt c, pt d){
 	}
 	return false;
 }
+
 pt intersection(pt a, pt b, pt c, pt d){
 	cord c1 = (b-a)^(c-a), c2 = (b-a)^(d-a);
 	return (c1*d - c2*c)/(c1 - c2);
 }
+
 ld signedArea(vector<pt> &p){
 	int n = p.size();
 	cord res = 0;
@@ -51,6 +114,11 @@ ld signedArea(vector<pt> &p){
 		res += (p[i]^p[(i+1)%n]);
 	return (ld)res/2;
 }
+
+ld area(vector<pt> &poly){
+	return abs(signedArea(poly));
+}
+
 //relative position of c toward ab
 int relpos(pt a, pt b, pt c){
 	b = b-a; c = c-a;
@@ -60,6 +128,7 @@ int relpos(pt a, pt b, pt c){
 	if (Grt(b*c, abs(b))) return FRONT;
 	return ON;
 }
+
 //distance of a point from a line segment
 ld distLSP(pt a, pt b, pt c){
 	int rpos = relpos(a, b, proj(a, b, c));
@@ -68,11 +137,13 @@ ld distLSP(pt a, pt b, pt c){
 	b = b-a, c = c-a;
 	return abs(b^c/abs(b));
 }
+
 //distance between two line segments
 ld distLS(pt a, pt b, pt c, pt d){
 	if (intersect(a, b, c, d)) return 0;
 	return min(min(distLSP(a, b, c), distLSP(a, b, d)), min(distLSP(c, d, a), distLSP(c, d, b)));
 }
+
 //angles less than or equal to 180
 bool isConvex(vector<pt> &p){
 	int n = p.size();
@@ -84,6 +155,7 @@ bool isConvex(vector<pt> &p){
 	}	
 	return (neg&pos) == false;
 }
+
 int crossingN(vector<pt> &p, pt a){
 	int n = p.size();
 	pt b = a;
@@ -97,6 +169,7 @@ int crossingN(vector<pt> &p, pt a){
 	}
 	return cn;
 }
+
 int windingN(vector<pt> &p, pt a){
 	int n = p.size();
 	pt b = a;
@@ -113,6 +186,7 @@ int windingN(vector<pt> &p, pt a){
 	}
 	return wn;
 }
+
 //returns IN, ON or OUT
 int pointInPoly(vector<pt> &p, pt a){
 	int n = p.size();
@@ -122,6 +196,7 @@ int pointInPoly(vector<pt> &p, pt a){
 	return (crossingN(p, a)%2 ? IN : OUT);
 	//return (windingN(po, a) ? IN : OUT);
 }
+
 pair <pt, pt> nearestPair(vector<pt> &po){
 	int n = po.size();
 	sort(po.begin(), po.end(), cmpXY());
@@ -146,6 +221,7 @@ pair <pt, pt> nearestPair(vector<pt> &po){
 	}
 	return res;
 }
+
 //Cuts polygon with line ab and returns the left cut polygon
 vector<pt> convexCut(vector<pt> &po, pt a, pt b){
 	int n = po.size();
@@ -158,7 +234,8 @@ vector<pt> convexCut(vector<pt> &po, pt a, pt b){
 	}
 	return res;
 }
-//slightly line
+
+//Slightly line
 pair <pt, pt> get_segment(pt a, pt b){
     const int deltax = b.x - a.x;
     const int deltay = b.y - a.y;
@@ -176,6 +253,7 @@ pair <pt, pt> get_segment(pt a, pt b){
         return {aaa, bbb};
     }
 }
+
 pair<int, int> tangent(vector <pt> &A0, vector <pt> &B0){
     vector <pair<pt, int>> A, B;
     for (int i = 0; i < sz(A0); i++)
@@ -187,7 +265,6 @@ pair<int, int> tangent(vector <pt> &A0, vector <pt> &B0){
     A = convex_hull(A);
     B = convex_hull(B);
     int ia = 0, ib = 0;
-    //direction must be considered
     while (1){
         bool fin = true;
         for (; dir(A[ia].F, B[ib].F, B[(ib+sz(B)-1)%sz(B)].F) < 0 || dir(A[ia].F, B[ib].F, B[(ib+1)%sz(B)].F) < 0; ib = (ib+1)%sz(B))

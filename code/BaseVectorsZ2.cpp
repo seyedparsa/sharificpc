@@ -1,13 +1,10 @@
-struct Base
-{
+struct Base{
     ll a[B] = {};
-    ll eliminate(ll x)
-    {
+    ll eliminate(ll x){
         for(int i=B-1; i>=0; --i) if(x >> i & 1) x ^= a[i];
         return x;
     }
-    void add(ll x)
-    {
+    void add(ll x){
         x = eliminate(x);
         for(int i=B-1; i>=0; --i) if(x >> i & 1)
         {
@@ -16,8 +13,7 @@ struct Base
             return;
         }
     }
-    int size()
-    {
+    int size(){
         int cnt = 0;
         for(int i=0; i<B; ++i) if(a[i]) ++cnt;
         return cnt;

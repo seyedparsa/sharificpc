@@ -1,11 +1,8 @@
 const int N = 2002;
 const int INF = 1e9;
-
 int hn, weight[N][N];
 int x[N], y[N];
-
-int hungarian()  // maximum weighted perfect matching
-{
+int hungarian()  // maximum weighted perfect matching{
 	int n = hn;
 	int p, q;
 	vector<int> fx(n, -INF), fy(n, 0);
@@ -14,7 +11,6 @@ int hungarian()  // maximum weighted perfect matching
 	for (int i = 0; i < n; ++i)
 		for (int j = 0; j < n; ++j)
 			fx[i] = max(fx[i], weight[i][j]);
-
 	for (int i = 0; i < n; ) {
 		vector<int> t(n, -1), s(n+1, i);
 		for (p = 0, q = 1; p < q && x[i] < 0; ++p) {

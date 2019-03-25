@@ -3,25 +3,16 @@
 		call make_graph(n) at first
 		you should use add_edge(u,v,w) and
 		add pair of vertices as edges (vertices are 0..n-1)
-
 	GIVES:
 		output of dmst(v) is the minimum arborescence with root v in directed graph
 		(INF if it hasn't a spanning arborescence with root v)
-
 	O(mlogn)
 */
-
-#include <bits/stdc++.h>
-using namespace std;
-
 const int INF = 2e7;
-
-struct MinimumAborescense
-{
+struct MinimumAborescense{
 	struct edge { 
 		int src, dst, weight;
 	};
-
 	struct union_find {
 		vector<int> p; 
 		union_find(int n) : p(n, -1) { };
@@ -35,7 +26,6 @@ struct MinimumAborescense
 		int root(int u) { return p[u] < 0 ? u : p[u] = root(p[u]); }
 		int size(int u) { return -p[root(u)]; }
 	};
-
 	struct skew_heap {
 		struct node {
 			node *ch[2];
@@ -82,7 +72,6 @@ struct MinimumAborescense
 			root = merge(root, x.root);
 		}
 	};
-
 	vector<edge> edges;
 	void add_edge(int src, int dst, int weight) {
 		edges.push_back({src, dst, weight});
@@ -92,13 +81,11 @@ struct MinimumAborescense
 		n = _n;
 		edges.clear();
 	}
-
 	int dmst(int r) {
 		union_find uf(n);
 		vector<skew_heap> heap(n);
 		for (auto e: edges) 
 			heap[e.dst].push(e);
-
 		double score = 0;
 		vector<int> seen(n, -1);
 		seen[r] = r;
@@ -107,13 +94,11 @@ struct MinimumAborescense
 			for (int u = s; seen[u] < 0;) {
 				path.push_back(u);
 				seen[u] = s;
-				if (heap[u].empty()) return INF; 
-
+				if (heap[u].empty()) return INF;
 				edge min_e = heap[u].top(); 
 				score += min_e.weight;
 				heap[u].add(-min_e.weight);
 				heap[u].pop();
-
 				int v = uf.root(min_e.src);
 				if (seen[v] == s) {
 					skew_heap new_heap;

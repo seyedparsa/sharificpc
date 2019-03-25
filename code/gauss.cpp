@@ -6,9 +6,7 @@ ll pw(ll a, ll b) {
 	ll x = pw(a, b/2);
 	return x * x % MOD * (b % 2 ? a : 1) % MOD;
 }
-
 ll inv(ll x) { return pw(x, MOD - 2); }
-
 bool solve() {
 	int n = in();
 	vector <vec> matrix(n);

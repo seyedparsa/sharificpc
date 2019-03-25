@@ -2,7 +2,6 @@
 const int MAX_N = 2e5+10;
 const int INF = 1e9;
 const ld eps = 1e-8;
-
 struct circle {
 public:
   ld r;
@@ -28,13 +27,11 @@ public:
     ld sumr = other.r + r;
     ld rr = r - other.r;
     ld dis = distance(o, other.o);
-
     ld a = (r*r - other.r*other.r + dis*dis)/(2*dis);
     ld h = sqrt(r*r-a*a);
     point p2(o.x, o.y);
     p2.x = a*(other.o.x - o.x)/dis;
     p2.y = a*(other.o.y - o.y)/dis;
-
     if(is_zero(sumr-dis)) {
       v.push_back(p2);
       return make_pair(3, v);
@@ -47,21 +44,17 @@ public:
       return make_pair(0, v);
     if(dis >= sumr)
       return make_pair(4, v);
-
-		
     point p3(p2.x + h*(other.o.y - o.y)/dis, p2.y - h*(other.o.x - o.x)/dis);
     point p4(p2.x - h*(other.o.y - o.y)/dis, p2.y + h*(other.o.x - o.x)/dis);
     v.push_back(p3);
     v.push_back(p4);
     return make_pair(2, v);
   }
-
   ld f(ld l, ld r, ld R){
     ld cosa = (l*l + r*r - R*R)/(2.0*r*l);
     ld a = acos(cosa);
     return r*r*(a - sin(2*a)/2);
   }
-  
   ld intersection_area(circle c2) {
     ld l = distance(o, c2.o);
     if(l >= r + c2.r) return 0;

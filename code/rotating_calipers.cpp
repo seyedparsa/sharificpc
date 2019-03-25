@@ -14,14 +14,10 @@ vector <pair<pt, pt>> get_antipodals(vector <pt> &p){
 	int i = 0, j = sz(L)-1;
 	while (i+1 < sz(U) || j > 0){
 		res.pb({U[i], L[j]});
-		if (i+1 == sz(U))
-			j--;
-		else if (j == 0)
-			i++;
-		else if (cross(L[j]-L[j-1], U[i+1]-U[i]) >= 0)
-			i++;
-		else
-			j--;
+		if (i+1 == sz(U))   j--;
+		else if (j == 0)    i++;
+		else if (cross(L[j]-L[j-1], U[i+1]-U[i]) >= 0)  i++;
+		else    j--;
 	}
 	return res;
 }

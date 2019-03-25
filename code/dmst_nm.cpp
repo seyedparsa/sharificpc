@@ -3,37 +3,26 @@
 		call make_graph(n) at first
 		you should use add_edge(u,v,w) and
 		add pair of vertices as edges (vertices are 0..n-1)
-
 	GIVES:
 		output of dmst(v) is the minimum arborescence with root v in directed graph
 		(-1 if it hasn't a spanning arborescence with root v)
-
 	O(mn)
 */
-
-#include <bits/stdc++.h>
-using namespace std;
-
 const int INF = 2e7;
-
-struct MinimumAborescense
-{
+struct MinimumAborescense{
 	int n;
 	struct edge {
 		int src, dst;
 		int weight;
 	};
 	vector<edge> edges;
-
 	void make_graph(int _n) {
 		n=_n;
 		edges.clear();
 	}
-
 	void add_edge(int u, int v, int w) {
 		edges.push_back({u, v, w});
 	}
-
 	int dmst(int r) {
 		int N = n;
 		for (int res = 0; ;) {

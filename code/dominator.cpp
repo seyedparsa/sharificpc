@@ -1,12 +1,9 @@
-struct DominatorTree
-{
+struct DominatorTree{
 	vector<int> adj[MAXN], radj[MAXN], tree[MAXN], bucket[MAXN]; // SET MAXIMUM NUMBER OF NODES
 	int sdom[MAXN], par[MAXN], idom[MAXN], dsu[MAXN], label[MAXN];
 	int arr[MAXN], rev[MAXN], cnt;
-	void clear()
-	{
-		for (int i = 0; i < MAXN; i++)
-		{
+	void clear(){
+		for (int i = 0; i < MAXN; i++){
 			adj[i].clear();
 			radj[i].clear();
 			tree[i].clear();
@@ -15,28 +12,23 @@ struct DominatorTree
 		}
 		cnt = 0;
 	}
-	void add_edge(int u, int v)
-	{
+	void add_edge(int u, int v){
 		adj[u].push_back(v);
 	}
-	void dfs(int v)
-	{
+	void dfs(int v){
 		arr[v] = cnt;
 		rev[cnt] = v;
 		cnt++;
-		for (int i = 0; i < adj[v].size(); i++)
-		{
+		for (int i = 0; i < adj[v].size(); i++){
 			int u = adj[v][i];
-			if (arr[u] == -1)
-			{
+			if (arr[u] == -1){
 				dfs(u);
 				par[arr[u]] = arr[v];
 			}
 			radj[arr[u]].push_back(arr[v]);
 		}
 	}
-	int find(int v, int x = 0)
-	{
+	int find(int v, int x = 0){
 		if (dsu[v] == v)
 			return (x ? -1 : v);
 		int u = find(dsu[v], x + 1);
@@ -47,25 +39,20 @@ struct DominatorTree
 		dsu[v] = u;
 		return (x ? u : label[v]);
 	}
-	void merge(int u, int v)
-	{
+	void merge(int u, int v){
 		dsu[v] = u;
 	}
-	void build(int root)
-	{
+	void build(int root){
 		dfs(root);
 		int n = cnt;
-		for (int v = n - 1; v >= 0; v--)
-		{
-			for (int i = 0; i < radj[v].size(); i++)
-			{
+		for (int v = n - 1; v >= 0; v--){
+			for (int i = 0; i < radj[v].size(); i++){
 				int u = radj[v][i];
 				sdom[v] = min(sdom[v], sdom[find(u)]);
 			}
 			if (v > 0)
 				bucket[sdom[v]].push_back(v);
-			for (int i = 0; i < bucket[v].size(); i++)
-			{
+			for (int i = 0; i < bucket[v].size(); i++){
 				int u = bucket[v][i];
 				int w = find(u);
 				if (sdom[u] == sdom[w])
@@ -76,16 +63,14 @@ struct DominatorTree
 			if (v > 0)
 				merge(par[v], v);
 		}
-		for (int v = 1; v < n; v++)
-		{
+		for (int v = 1; v < n; v++){
 			if (idom[v] != sdom[v])
 				idom[v] = idom[idom[v]];
 			tree[rev[v]].push_back(rev[idom[v]]);
 			tree[rev[idom[v]]].push_back(rev[v]);
 		}
 	}
-	DominatorTree()
-	{
+	DominatorTree(){
 		clear();
 	}
 };

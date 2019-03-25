@@ -7,8 +7,9 @@ rotating_calipers.cpp	Rotating Calipers
 delaunay.cpp	Delaunay Triangulation $O(n^2)$
 ConvexHull3D.cpp	Convex Hull 3D
 halfplane.cpp	Half Plane Intersection
+mec.cpp	Minimum Enclosing Circle
 PointsInsidePolygon.txt	Number of integer points inside polygon
-point-in-circle.cpp	Is this point in circle of other 3 points?
+#point-in-circle.cpp	Is this point in circle of other 3 points?
 #delaunay_pro.cpp	Delaunay $O(n \log^2 n)$
 useful-geo.txt	Useful Geo Facts
 Duality.tex	Duality and properties
@@ -20,7 +21,7 @@ palindromic-tree.cpp	Palindromic Tree
 
 [Data structure]
 treap.cpp	Treap
-treap-full.cpp	Treap Full
+#treap-full.cpp	Treap Full
 link-cut.cpp	Link-cut Tree
 DCHT3.cpp	Dynimic convex hull
 hld.cpp	Heavy-Light Decomposition

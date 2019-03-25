@@ -1,15 +1,9 @@
-#include <bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-#define pb push_back
 const int mod = 998244353;
 const int root = 15311432;
 const int root_1 = 469870224;
 const int root_pw = 1 << 23;
 const int N = 400004;
-
 vector<int> v[N];
-
 ll modInv(ll a, ll mod = mod){
 	ll x0 = 0, x1 = 1, r0 = mod, r1 = a;
 	while(r1){
@@ -19,10 +13,8 @@ ll modInv(ll a, ll mod = mod){
 	}
 	return x0 < 0 ? x0 + mod : x0;
 }
-
 void fft (vector<int> &a, bool inv) {
 	int n = (int) a.size();
-
 	for (int i=1, j=0; i<n; ++i) {
 		int bit = n >> 1;
 		for (; j>=bit; bit>>=1)
@@ -31,7 +23,6 @@ void fft (vector<int> &a, bool inv) {
 		if (i < j)
 			swap (a[i], a[j]);
 	}
-
 	for (int len=2; len<=n; len<<=1) {
 		int wlen = inv ? root_1 : root;
 		for (int i=len; i<root_pw; i<<=1)
@@ -46,14 +37,12 @@ void fft (vector<int> &a, bool inv) {
 			}
 		}
 	}
-
 	if(inv) {
 		int nrev = modInv(n, mod);
 		for (int i=0; i<n; ++i)
 			a[i] = int (a[i] * 1ll * nrev % mod);
 	}
 }
-
 void pro(const vector<int> &a, const vector<int> &b, vector<int> &res) {
 	vector<int> fa(a.begin(), a.end()),  fb(b.begin(), b.end());
 	int n = 1;
@@ -67,12 +56,9 @@ void pro(const vector<int> &a, const vector<int> &b, vector<int> &res) {
 	fft (fa, true);
 	res = fa;
 }
-
 int S(int n, int r) {
-
 	int nn = 1;
 	while(nn < n) nn <<= 1;
-
 	for(int i = 0; i < n; ++i) {
 		v[i].push_back(i);
 		v[i].push_back(1);
@@ -80,14 +66,12 @@ int S(int n, int r) {
 	for(int i = n; i < nn; ++i) {
 		v[i].push_back(1);
 	}
-
 	for(int j = nn; j > 1; j >>= 1){
 		int hn = j >> 1;
 		for(int i = 0; i < hn; ++i){
 			pro(v[i], v[i + hn], v[i]);
 		}
 	}
-
 	return v[0][r];
 }
 

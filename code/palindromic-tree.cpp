@@ -1,5 +1,4 @@
-int n, last, sz;
- 
+int n, last, sz; 
 void init() {
     s[n++] = -1;
     link[0] = 1;

@@ -1,17 +1,14 @@
 Node x[N];
-
 struct Node {
     int sz, label; /* size, label */
     Node *p, *pp, *l, *r; /* parent, path-parent, left, right pointers */
     Node() { p = pp = l = r = 0; }
 };
-
 void update(Node *x) {
     x->sz = 1;
     if(x->l) x->sz += x->l->sz;
     if(x->r) x->sz += x->r->sz;
 }
-
 void rotr(Node *x) {
     Node *y, *z;
     y = x->p, z = y->p;
@@ -25,7 +22,6 @@ void rotr(Node *x) {
     y->pp = 0;
     update(y);
 }
-
 void rotl(Node *x) {   
     Node *y, *z;
     y = x->p, z = y->p;
@@ -39,7 +35,6 @@ void rotl(Node *x) {
     y->pp = 0;
     update(y);
 }
-
 void splay(Node *x) {
     Node *y, *z;
     while(x->p) {
@@ -61,7 +56,6 @@ void splay(Node *x) {
     }
     update(x);
 }
-
 Node *access(Node *x) {   
     splay(x);
     if(x->r) { 
@@ -70,7 +64,6 @@ Node *access(Node *x) {
         x->r = 0;
         update(x);
     }
-
     Node *last = x;
     while(x->pp) {  
         Node *y = x->pp;
@@ -88,21 +81,18 @@ Node *access(Node *x) {
     }
     return last;
 }
-
 Node *root(Node *x) {  
     access(x);
     while(x->l) x = x->l;
     splay(x);
     return x;
 }
-
 void cut(Node *x) {   
     access(x);
     x->l->p = 0;
     x->l = 0;
     update(x);
 }
-
 void link(Node *x, Node *y) {   
     access(x);
     access(y);
@@ -110,17 +100,14 @@ void link(Node *x, Node *y) {
     y->p = x;
     update(x);
 }
-
 Node *lca(Node *x, Node *y) {   
     access(x);
     return access(y);
 }
-
 int depth(Node *x) {   
     access(x);
     return x->sz - 1;
 }
-
 void init(int n) { 
     for(int i = 0; i < n; i++) {
         x[i].label = i; 
