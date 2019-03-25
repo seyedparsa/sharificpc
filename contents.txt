@@ -1,6 +1,6 @@
 [Geometry]
 rotating_calipers.cpp	Rotating Calipers
-delaunay.cpp	Delaunay Triangulation O(n2)
+delaunay.cpp	Delaunay Triangulation O(n^2)
 ConvexHull3D.cpp    Convex Hull 3D
 halfplane.cpp   Half Plane Intersection
 
@@ -21,7 +21,7 @@ bicon.cpp	Biconnected components
 #flow.cpp	Flow - Dinic
 hungarian.cpp	Maximum weighted matching - Hungarian
 EarDecomposition.txt	Ear decomposition
-stoer-wagner.cpp	Stoer-Wagner min cut $O(n3)$
+stoer-wagner.cpp	Stoer-Wagner min cut $O(n^3)$
 dmst_mlogn.cpp	Directed minimum spanning tree $O(m \log n)$
 dmst_nm.cpp	Directed minimum spanning tree $O(nm)$
 dominator.cpp	Dominator tree
